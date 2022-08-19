@@ -1,0 +1,43 @@
+create table Kinds(
+    Kinds_ID int AUTO_INCREMENT,
+    Kind varchar(15) NOT NULL,
+    primary key (Kinds_ID)
+);
+
+
+create table Users(
+    User_ID int AUTO_INCREMENT,
+    UserName varchar(20) NOT NULL,
+    Password varchar(30) NOT NULL,
+    primary key (User_ID)
+);
+
+
+create table Schedule(
+    Schedule_ID int AUTO_INCREMENT,
+    User_ID int,
+    Kinds_ID int,
+    Contents varchar(255) NOT NULL,
+    primary key (Schedule_ID),
+    foreign key (User_ID) references Users (User_ID),
+    foreign key (Kinds_ID) references Kinds (Kinds_ID)
+);
+
+
+create table ScheduleTable(
+    ScheduleTable_ID int AUTO_INCREMENT,
+    Date date NOT NULL,
+    Schedule_ID int,
+    primary key (ScheduleTable_ID),
+    foreign key (Schedule_ID) references Schedule(Schedule_ID)
+);
+
+
+insert into Kinds(kind) values('学校');
+insert into Kinds(kind) values('試験');
+insert into Kinds(kind) values('課題');
+insert into Kinds(kind) values('行事');
+insert into Kinds(kind) values('就活');
+insert into Kinds(kind) values('アルバイト');
+insert into Kinds(kind) values('旅行');
+
